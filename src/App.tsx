@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-function App(): JSX.Element {
+function CharlesGordinierIIIApp(): JSX.Element {
     return (
         <div className="App">
             <header className="App-header">
@@ -15,4 +15,4 @@ function App(): JSX.Element {
     );
 }
 
-export default App;
+export default CharlesGordinierIIIApp;
