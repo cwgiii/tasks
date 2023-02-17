@@ -13,9 +13,15 @@
     }
 }
 
+#rectangle {
+    width: 100px;
+    height: 200px;
+    background: red;
+}
+
 .App-header {
     width: 100%;
-    background-color: #282c34;
+    background-color: #138a83;
     min-height: 40vh;
     display: flex;
     flex-direction: column;
