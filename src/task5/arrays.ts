@@ -109,7 +109,24 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    return "";
+    if (addends.length > 0) {
+        const total = addends.reduce(
+            (currentTotal: number, num: number) => currentTotal + num,
+            0
+        );
+        const added_signs = addends.map(
+            (addend: number): string => addend.toString() + "+"
+        );
+        const math = added_signs.reduce(
+            (currentString: string, num: string) => currentString + num
+        );
+        const final_string = math
+            .toString()
+            .substring(0, math.toString().length - 1);
+        return total + "=" + final_string;
+    } else {
+        return "0=0";
+    }
 }
 
 /**
@@ -122,5 +139,37 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    return [];
+    if (values.length > 0) {
+        const first_negative = values.findIndex(
+            (value: number): boolean => value < 0
+        );
+        let added_values;
+        if (first_negative > 0) {
+            added_values = values.filter(
+                (added_value: number): boolean =>
+                    values.findIndex(
+                        (value: number): boolean => value === added_value
+                    ) < first_negative
+            );
+        } else {
+            added_values = [...values];
+        }
+        let total;
+        if (added_values.length > 0) {
+            total = added_values.reduce(
+                (currentTotal: number, num: number) => (currentTotal += num)
+            );
+        } else {
+            total = 0;
+        }
+        let inserted_total = [...values];
+        if (first_negative >= 0) {
+            inserted_total.splice(first_negative + 1, 0, total);
+        } else {
+            inserted_total = [...inserted_total, total];
+        }
+        return inserted_total;
+    } else {
+        return [0];
+    }
 }
