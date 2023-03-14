@@ -259,44 +259,33 @@ export function changeQuestionTypeById(
  * Remember, if a function starts getting too complicated, think about how a helper function
  * can make it simpler! Break down complicated tasks into little pieces.
  */
-export function splice_array(
-    index: number,
-    name: string,
-    question: Question
-): string[] {
-    const new_question = { ...question };
-    new_question.options.splice(index, 1, name);
-    return new_question.options;
-}
+
 export function editOption(
     questions: Question[],
     targetId: number,
     targetOptionIndex: number,
     newOption: string
 ): Question[] {
-    let new_array;
-    if (targetOptionIndex == -1) {
-        new_array = questions.map(
-            (question: Question): Question => ({
-                ...question,
-                options:
-                    targetId != question.id
-                        ? question.options
-                        : [...question.options, newOption]
-            })
+    const spliceFunction = (question: Question) => {
+        const newArray = [...question.options];
+        newArray.splice(targetOptionIndex, 1, newOption);
+        return newArray;
+    };
+    if (targetOptionIndex === -1) {
+        return questions.map(
+            (question: Question): Question =>
+                question.id === targetId
+                    ? { ...question, options: [...question.options, newOption] }
+                    : { ...question }
         );
     } else {
-        new_array = questions.map(
-            (question: Question): Question => ({
-                ...question,
-                options:
-                    targetId != question.id
-                        ? question.options
-                        : splice_array(targetOptionIndex, newOption, question)
-            })
+        return questions.map(
+            (question: Question): Question =>
+                question.id === targetId
+                    ? { ...question, options: spliceFunction(question) }
+                    : { ...question }
         );
     }
-    return new_array;
 }
 
 /***
