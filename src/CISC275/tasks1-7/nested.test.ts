@@ -17,8 +17,8 @@ import {
     editOption,
     duplicateQuestionInArray
 } from "./nested";
-import testQuestionData from "./data/questions.json";
-import backupQuestionData from "./data/questions.json";
+import testQuestionData from "../../data/questions.json";
+import backupQuestionData from "../../data/questions.json";
 
 const {
     BLANK_QUESTIONS,

@@ -11,8 +11,8 @@ import {
     addOption,
     mergeQuestion
 } from "./objects";
-import testQuestionData from "./data/questions.json";
-import backupQuestionData from "./data/questions.json";
+import testQuestionData from "../../data/questions.json";
+import backupQuestionData from "../../data/questions.json";
 
 ////////////////////////////////////////////
 // Setting up the test data
